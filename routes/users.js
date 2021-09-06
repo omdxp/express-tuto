@@ -1,6 +1,7 @@
 const express = require("express");
 
 const router = express.Router();
+router.use(logger);
 
 // static routes should be above dynamic routes
 
@@ -40,5 +41,11 @@ router.param("userId", (req, res, next, userId) => {
   console.log(userId);
   next();
 });
+
+// middleware function
+function logger(req, res, next) {
+  console.log(req.method + " " + req.originalUrl);
+  next();
+}
 
 module.exports = router;
