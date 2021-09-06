@@ -19,6 +19,7 @@ router.post("/", (req, res) => {
 router
   .route("/:userId")
   .get((req, res) => {
+    console.log(req.user);
     const id = req.params.userId;
     res.send(`Get user with id: ${id}`);
   })
@@ -30,5 +31,14 @@ router
     const id = req.params.userId;
     res.send(`Delete user with id: ${id}`);
   });
+
+const users = [{ name: "Omar" }, { name: "Yasser" }];
+
+// middleware
+router.param("userId", (req, res, next, userId) => {
+  req.user = users[userId];
+  console.log(userId);
+  next();
+});
 
 module.exports = router;
