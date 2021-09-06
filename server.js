@@ -1,13 +1,15 @@
 const express = require("express");
 const app = express();
 
+app.use(express.static("public"));
+
 app.set("view engine", "ejs");
 // app.use(logger); // logger is defined at the top
 
-app.get("/", (req, res) => {
-  console.log("Here");
-  res.render("index", { text454554: "World!" });
-});
+// app.get("/", (req, res) => {
+//   console.log("Here");
+//   res.render("index", { text454554: "World!" });
+// });
 
 const usersRouter = require("./routes/users");
 
