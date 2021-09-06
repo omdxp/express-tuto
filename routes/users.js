@@ -14,8 +14,14 @@ router.get("/new", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  const fName = req.body.fName;
-  res.send("Create user " + fName);
+  const isValid = true;
+  if (isValid) {
+    users.push({ name: req.body.fName });
+    res.redirect(`/users/${users.length - 1}`);
+  } else {
+    console.log("Error");
+    res.render("users/new", { fName: req.body.fName });
+  }
 });
 
 router
